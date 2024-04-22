@@ -27,55 +27,29 @@
 
 // export default RoutesPages;
 
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "../Pages/register";
 import Home from "../Pages/home";
-import AllBooks from "../Pages/allBooks";
-import EditBooks from "../Pages/editBooks";
+// import AllBooks from "../Pages/allBooks";
+// import EditBooks from "../Pages/editBooks";
 import Footer from "../Components/footer";
 import Header from "../Components/header/header";
 import Notfound from "../Pages/notFound";
+import PrivateRoute, { UserRoute } from "../PrivateRoute";
 
 function RoutesPages() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        {/* Render Home without Header and Footer */}
-        <Route path="/Register" element={<Register />} />
-        {/* Render other components with Header and Footer */}
-        <Route
-          path="/"
-          element={
-            <>
-              <Header />
-              <Home />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/allbooks"
-          element={
-            <>
-              <Header />
-              <AllBooks />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path="/editbooks/:id"
-          element={
-            <>
-              <Header />
-              <EditBooks />
-              <Footer />
-            </>
-          }
-        />
+        <Route element={<PrivateRoute />}>
+          <Route path="/home" element={<Home />} />
+        </Route>
+        <Route element={<UserRoute />}>
+          <Route path="/" element={<Register />} />
+        </Route>
         <Route path="*" element={<Notfound />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

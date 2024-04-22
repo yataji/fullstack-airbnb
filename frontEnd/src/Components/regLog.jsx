@@ -9,6 +9,7 @@ import {
 } from "@material-tailwind/react";
 import { login, register } from "../Api/axiosConfig";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function CardDefault(props) {
   const [dataFirstName, setFirstName] = useState("");
@@ -17,6 +18,7 @@ export function CardDefault(props) {
   const [dataPassword, setPassword] = useState("");
   const [getEmail, getEmailSignIn] = useState("");
   const [getPassword, getPasswordSignIn] = useState("");
+  const Navigate = useNavigate();
   //   const [allDataSignUp, setAllData] = useState({});
 
   const handelFirstNameRegister = (e) => {
@@ -59,14 +61,14 @@ export function CardDefault(props) {
     // await Api.post("/api/profile/register", allDataSignUp);
   };
 
-  const handleSignIn = async () => {
+  const handleSignIn = async (e) => {
     e.preventDefault();
     const dataSignIn = {
       getEmail,
       getPassword,
     };
     // Api.post('/register', dataSignIn);
-    login(dataform)
+    login(dataSignIn)
       .then((response) => {
         // Navigate("/login");
         // console.log({ dataSignIn });
@@ -76,7 +78,7 @@ export function CardDefault(props) {
         // setusername(response.data.data.username);
         // setloading(false);
         // settoken(response.data.token)
-        // Navigate("/home");
+        Navigate("/home");
       })
       .catch((error) => {
         console.log("erroe message ", error);
