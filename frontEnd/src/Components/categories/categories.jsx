@@ -6,14 +6,17 @@ import Toggle from "../ui/toggle";
 
 const Categories = () => {
   return (
-    <div className="w-[95%] flex justify-center items-center ">
+    <div className="w-full flex justify-center items-center ">
       <section className="flex w-[80%] relative items-center justify-center ">
-        <button className="text-black rotate-180 absolute left-3">
+        {/* <button className="text-black rotate-180 absolute left-3">
           <IconCircleChevronRight stroke={2} />
-        </button>
-        <div className="w-[95%] flex overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-transparent">
+        </button> */}
+        <div className="w-[95%] h-20 flex overflow-x-auto overflow-y-hidden  border-black scrollbar-thin scrollbar-track-transparent scrollbar-thumb-transparent">
           {homeData.map((item, index) => (
-            <div key={index} className="h-20 w-32 min-w-28 flex flex-col justify-center items-center">
+            <div
+              key={index}
+              className="h-20 w-32 min-w-28  border-red-500 flex flex-col justify-center items-center"
+            >
               <button className="flex flex-col justify-center items-center">
                 <span>{item.icon}</span>
                 <span className="font-Circular">{item.title}</span>
@@ -21,9 +24,9 @@ const Categories = () => {
             </div>
           ))}
         </div>
-        <button className="text-black absolute right-3">
+        {/* <button className="text-black absolute right-3">
           <IconCircleChevronRight stroke={2} />
-        </button>
+        </button> */}
       </section>
       <section className="flex justify-center items-center w-[20%] gap-5">
         <button className="w-32 h-14 border border-black/30 flex justify-center items-center gap-3 rounded-xl">
